@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const career_controllers_1 = require("../controllers/career.controllers");
+const autorization_1 = require("../middlewares/autorization");
+const router = (0, express_1.Router)();
+router.get('/getCareers', career_controllers_1.getAllCareeers);
+router.post('/createCareer', autorization_1.verifyToken, career_controllers_1.createCareer);
+router.put('/editCareer/:careerId', autorization_1.verifyToken, career_controllers_1.editCareerById);
+exports.default = router;

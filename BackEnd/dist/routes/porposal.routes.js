@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const porposal_controllers_1 = require("../controllers/porposal.controllers");
+const autorization_1 = require("../middlewares/autorization");
+const router = (0, express_1.Router)();
+router.post('/createProposal', porposal_controllers_1.createProposal);
+router.get('/getPorposal/:idUser', porposal_controllers_1.getAllPorposalbyId);
+router.get('/searchPorposal/:porposalId', porposal_controllers_1.getPorposalbyId);
+router.get('/searchParticipants/:porposalId', porposal_controllers_1.getParticipansPorposal);
+router.get('/searchHorario/:porposalId', porposal_controllers_1.getHorarioPorposal);
+router.put('/updatePorposal/:porposalId', porposal_controllers_1.editPorposal);
+router.put('/updatefileId/:porposalId', porposal_controllers_1.updatefileId);
+router.get('/getAllPorposals', autorization_1.verifyToken, porposal_controllers_1.getAllPorposals);
+router.put('/checkPorposa/:porposalId', autorization_1.verifyToken, porposal_controllers_1.addComment);
+router.post('/getPorposalByYear', porposal_controllers_1.generarCronograma);
+router.delete('/deletePorposal/:porposalId', porposal_controllers_1.deletePorposalById);
+exports.default = router;

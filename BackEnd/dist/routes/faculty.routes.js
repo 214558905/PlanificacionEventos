@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const faculty_controller_1 = require("../controllers/faculty.controller");
+const autorization_1 = require("../middlewares/autorization");
+const router = (0, express_1.Router)();
+router.get('/getAllFaculties', faculty_controller_1.getAllFaculties);
+router.post('/createFaculty', autorization_1.verifyToken, faculty_controller_1.createFaculties);
+router.put('/editFaculty/:facultyId', autorization_1.verifyToken, faculty_controller_1.editFacultyById);
+exports.default = router;
